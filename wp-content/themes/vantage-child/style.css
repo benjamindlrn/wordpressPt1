@@ -1,0 +1,49 @@
+/*
+ Theme Name:   Vantage Child
+ Description:  Vantage Child Theme
+ Author:       Ben
+ Template:     vantage
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+ Text Domain:  vantage-child
+*/
+
+.main-slider {
+	background-color: white;
+}
+.menu, .main-navigation {
+	background-color: white;
+}
+
+#masthead .hgroup, #search-icon  #search-icon-icon{
+	display: none;
+}
+
+#masthead a {
+	color: #888;
+	background-color: white;
+}
+
+footer#colophon.site-footer {
+	background-color: black;
+}
+
+#footer-widgets .widget .widget-title {
+	font-size: 24px;
+}
+
+#footer-widgets {
+	width: 70%;
+}
+
+#colophon #theme-attribution, #colophon #site-info {
+	display: none;
+}
+
+div#main.site-main {
+    background-color: white;
+max-width: 100%;
+}
+
