@@ -10,9 +10,18 @@
  Text Domain:  vantage-child
 */
 
-.main-slider {
+#primary{
+	width: 100%;
+}
+
+#main {
+    background-color: #efefef !important; 
+
+}
+div#main-slider {
 	background-color: white;
 }
+
 .menu, .main-navigation {
 	background-color: white;
 }
@@ -40,10 +49,5 @@ footer#colophon.site-footer {
 
 #colophon #theme-attribution, #colophon #site-info {
 	display: none;
-}
-
-div#main.site-main {
-    background-color: white;
-max-width: 100%;
 }
 

@@ -115,13 +115,24 @@ if ( 'post.php' == $pagenow || 'post-new.php' == $pagenow ) {
               $(document).ready(function(){
 
                   var maxField = 12; //Input fields increment limitation
+                  var x = 1; //Initial field counter is 1                  
                   var addButton = $('.add_button'); //Add button selector
-                  var wrapper = $('.field_wrapper'); //Input field wrapper
-                  var fieldHTML = '<div align="center" style="margin-top: 1%"><input type="text" name="tasks[]" value="<?= $value[1]?>"/><input style="margin-left: 2%; background:#e14d43; border-color:#e14d43" type="button" class="remove_button btn btn-primary" value="Remove"></div>'; //New input field html 
-                  var x = 1; //Initial field counter is 1
-                  $(addButton).click(function(){ //Once add button is clicked
+                  var wrapper = $('.field_wrapper'); //Input field wrapper                  
+                  var fieldHTML = '<div align="center" style="margin-top: 1%"><input type="text" name="tasks[]" value=""/><input style="margin-left: 2%; background:#e14d43; border-color:#e14d43" type="button" class="remove_button btn btn-primary" value="Remove"></div>'; //New input field html                   
+                  var val = '<?= count($value)?>';           
+                  var i=1;
+                  while(i < val-1)
+                  {
+                        var str = '<?= $value[0]?>';                        
+                        $(wrapper).append('<div align="center" style="margin-top: 1%"><input type="text" name="tasks[]" value="'+str+'"/><input style="margin-left: 2%; background:#e14d43; border-color:#e14d43" type="button" class="remove_button btn btn-primary" value="Remove"></div>');
+                        i++;
+                  }
+
+                  $(addButton).click(function(){ //Once add button is clicked                    
+                    
                       if(x < maxField){ //Check maximum number of input fields
-                          x++; //Increment field counter
+                          x++; //Increment field counter                          
+                          
                           $(wrapper).append(fieldHTML); // Add field html
                       }
                   });   
@@ -138,8 +149,8 @@ if ( 'post.php' == $pagenow || 'post-new.php' == $pagenow ) {
         <div>
         <div class="field_wrapper">
             <div align="center">                  
-                <input type="text" name="tasks[]" value='<?=esc_attr($value[0])?>'>                
-                <input style="margin-left: 5%" type="button" class="add_button btn btn-primary" value="Add">
+                <input maxlength="29" type="text" name="tasks[]" value='<?=esc_attr($value[0])?>'>                
+                <input  style="margin-left: 5%" type="button" class="add_button btn btn-primary" value="Add">
             </div>        
             </div>    
         </div> 
@@ -180,9 +191,9 @@ if ( 'post.php' == $pagenow || 'post-new.php' == $pagenow ) {
       $num = count($_POST['tasks']);
       $i=0;
       $data = array();
-      while ( $i <= $num) {        
-        $data[] .= sanitize_text_field($_POST['tasks'][$i]);                 
-        $i++;
+      while ( $i <= $num) {              
+            $data[] .= sanitize_text_field($_POST['tasks'][$i]);                                      
+        $i++;      
       }
       
       update_post_meta($post_id,'_task_value_key',$data);
@@ -190,7 +201,6 @@ if ( 'post.php' == $pagenow || 'post-new.php' == $pagenow ) {
     }
     add_action('save_post','save_task_data');
 }
-
 
 /* Custom column fields */
 
@@ -202,16 +212,13 @@ if ( 'post.php' == $pagenow || 'post-new.php' == $pagenow ) {
         return $newColumns; 
     }
 
-
-
-
 add_filter('manage_lists_posts_columns','set_lists_columns');
-  
-   
 
 // Enable shortcodes in text widgets
 add_filter('widget_text','do_shortcode');
 
+
+//add_shortcode('myMessage','get_tasks');
 
 
 
